@@ -753,6 +753,11 @@
             </div>
 
             <div class="control-group checkbox-group">
+                <input type="checkbox" id="octo-leap-toggle">
+                <label for="octo-leap-toggle" style="margin-bottom: 0;">Force 8-Direction Compound Operator Trials (Level 8: Octo-Leap)</label>
+            </div>
+
+            <div class="control-group checkbox-group">
                 <input type="checkbox" id="lock-seed-toggle">
                 <label for="lock-seed-toggle" style="margin-bottom: 0;">Lock seed (reuse until unlocked)</label>
             </div>
@@ -863,6 +868,7 @@
             <button data-tab="mastery">Mastery Path</button>
             <button data-tab="level6">Level 6: g-Leap</button>
             <button data-tab="level7">Level 7: Ultimate</button>
+            <button data-tab="level8">Level 8: Octo-Leap</button>
             <button data-tab="pitfalls">Pitfalls &amp; FAQ</button>
             <button data-tab="glossary">Glossary</button>
         </nav>
@@ -883,6 +889,11 @@
     <script type="module">
         const RELATION_WORDS = { N: 'north of', S: 'south of', E: 'east of', W: 'west of' };
         const MATCH_AXES = ['N', 'S', 'E', 'W'];
+
+        // Level 8: 8-Direction Meta-Compound Operators
+        const LEVEL8_OPERATORS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        const DIAGONAL_OPERATORS = ['NE', 'SE', 'SW', 'NW'];
+
         const ACCEPTANCE_ALPHA = 0.25;
         const ACCEPTANCE_BETA = 0.5;
         const FIRST_N_NOVELTY = 6;
@@ -1024,9 +1035,11 @@
                         <li><strong>Level 4 — Near-miss foils:</strong> detect when premises <strong>look</strong> similar but fail one criterion (anchoring parity, mapping, axis alignment, derivability). Explain <strong>why</strong> they're not matches in plain language.</li>
                         <li><strong>Level 5 — Transfer:</strong> take a mapping that worked in one theme ("Learning &amp; Illumination") and remake it in a different theme ("Teams &amp; Leadership"), preserving relational roles: <code>Fact→Novice Task</code>, <code>Theory→Best Practice</code>, <code>Example→Case Review</code>, <code>Case study→Playbook</code>, <code>Fiction→Myth/Misconception</code>.</li>
                         <li><strong>Level 6 — Meta-Relational Analogy (The 'g' Leap):</strong> This is the most advanced task, designed for peak fluid intelligence. You will see a new premise type: <code>"North to South as East to West."</code> This is a pure analogy of relations. The game engine is testing if the <em>relationship</em> between the first pair is the same as the <em>relationship</em> between the second pair. <br><strong>Your Task:</strong> Determine if the premise is True or False. An N-back match occurs if the N-back premise has the <em>same truth value</em> (i.e., True matches True, and False matches False). <br><strong>Example:</strong> <code>North to South as East to West</code> <br><strong>Deduction 1 (5th-Order):</strong> The relation <code>(North to South)</code> is <code>Up-shift</code> → <code>Down-shift</code>. These are opposites. The hidden operator is <strong>West</strong>. <br><strong>Deduction 2 (5th-Order):</strong> The relation <code>(East to West)</code> is <code>Analogue</code> → <code>Opposite</code>. These are also opposites. The hidden operator is <strong>West</strong>. <br><strong>Result:</strong> <code>West</code> equals <code>West</code>. The premise is <strong>True</strong>. <br><strong>Example 2:</strong> <code>North to East as South to West</code> <br><strong>Deduction 1:</strong> <code>(North to East)</code> is <code>Up-shift</code> → <code>Analogue</code>. These are orthogonal. The relation is <strong>None</strong>. <br><strong>Deduction 2:</strong> <code>(South to West)</code> is <code>Down-shift</code> → <code>Opposite</code>. These are also orthogonal. The relation is <strong>None</strong>. <br><strong>Result:</strong> <code>None</code> equals <code>None</code>. The premise is <strong>True</strong>. <br><strong>Example 3:</strong> <code>North to South as North to East</code> <br><strong>Result:</strong> <code>West</code> does not equal <code>None</code>. The premise is <strong>False</strong>.</li>
-                        <li><strong>Advanced Strategy — Semantic Anchoring (Mental Technique):</strong> This is <strong>not a separate game mode</strong>—it's a powerful mental strategy you can apply to any level. Instead of manipulating abstract letters, you <strong>mentally anchor them to concrete concepts</strong> from your lived experience. <br><strong>How It Works (Purely Mental):</strong> (1) System shows: <code>N is north of J</code>. (2) You mentally anchor: J := "Fact". (3) You mentally transform: North(J→N) = up-shift "Fact" → "Theory". (4) You mentally map: N := "Theory". (5) In your head, the premise becomes "Theory is the higher abstraction of Fact". <br><strong>The Key:</strong> The system <strong>never sees</strong> your semantic anchors. They exist purely in your working memory. <br><strong>Applying to Level 6:</strong> You can also anchor META premises mentally. System shows: <code>"North to South as East to West"</code>. You mentally imagine: "North to South" (opposite) = "Teacher to Student" relationship. "East to West" (opposite) = "Day to Night" relationship. Both are opposite relationships → TRUE premise. <br><strong>Ultimate Challenge:</strong> Combine mental semantic anchoring with Level 6 META premises at high n-back (n=4 or 5). This requires: <strong>(1) Generating</strong> mental semantic anchors, <strong>(2) Evaluating</strong> truth values via operator logic, <strong>(3) Recalling</strong> your mental anchors from 4-5 trials ago, <strong>(4) Maintaining</strong> all of this in working memory simultaneously. This is the highest g-load task because YOUR imagination creates the semantic layer <strong>entirely in your head</strong>.</li>
+                        <li><strong>Level 7 — Compound Operator Relational (Maximum g-Load):</strong> The ultimate challenge: premises like <code>"north-west is north of south-east"</code> where compound operators (2-operator sequences) are related by meta-operators. You mentally anchor concepts and apply sequential transformations (Order→System→Chaos). Combines all cognitive demands: sequential transformation, semantic anchoring, meta-reasoning, working memory, and n-back recall. Mutually exclusive with Level 6.</li>
+                        <li><strong>Level 8 — 8-Direction Meta-Compound Operators (Octo-Leap):</strong> Beyond maximum: extends to 8 directions (N, NE, E, SE, S, SW, W, NW), creating 56 possible compounds. YOU must invent meanings for diagonal operators (NE, SE, SW, NW) and maintain coherence across trials. Example: <code>"northeast-southwest is north of southeast-northwest"</code>. Requires generative semantics, 8-way spatial reasoning, diagonal abstraction, and all Level 7 demands. Mutually exclusive with Levels 6 and 7. <strong>Start with low n and k</strong>—this is cognitively demanding beyond measure.</li>
+                        <li><strong>Advanced Strategy — Semantic Anchoring (Mental Technique):</strong> This is <strong>not a separate game mode</strong>—it's a powerful mental strategy you can apply to any level. Instead of manipulating abstract letters, you <strong>mentally anchor them to concrete concepts</strong> from your lived experience. <br><strong>How It Works (Purely Mental):</strong> (1) System shows: <code>N is north of J</code>. (2) You mentally anchor: J := "Fact". (3) You mentally transform: North(J→N) = up-shift "Fact" → "Theory". (4) You mentally map: N := "Theory". (5) In your head, the premise becomes "Theory is the higher abstraction of Fact". <br><strong>The Key:</strong> The system <strong>never sees</strong> your semantic anchors. They exist purely in your working memory. <br><strong>Applying to Levels 6-8:</strong> You can anchor META premises and compound operators mentally. For Level 8, you must also define your own diagonal operator meanings. This maximizes g-load because YOUR imagination creates the entire semantic layer.</li>
                     </ul>
-                    <p><strong>Mastery litmus:</strong> you can improvise <strong>new, coherent mappings</strong> at speed, across themes, while the logic engine remains satisfied—no contradictions, no shortcuts.</p>
+                    <p><strong>Mastery litmus:</strong> you can improvise <strong>new, coherent mappings</strong> at speed, across themes, while the logic engine remains satisfied—no contradictions, no shortcuts. At Level 8, you can maintain a consistent 8-direction model purely in working memory.</p>
                 `,
                 speech: 'Mastery: From Symbols to Schemas. Level one, single-atom fluency: ninety-five percent accuracy in naming valid up, down, analogue, or opposite moves for any anchor within three seconds. Level two, two-atom coordination: keep consistency when a letter appears in two relations; reconcile tensions by compound mappings such as Chaotic example. Level three, chain reasoning: three or more atoms spanning two axes; maintain semantic integrity across the chain. Level four, near-miss foils: detect when premises look similar but fail one criterion—anchoring parity, mapping, axis alignment, derivability. Explain why they are not matches in plain language. Level five, transfer: take a mapping that worked in one theme, Learning and Illumination, and remake it in a different theme, Teams and Leadership, preserving relational roles: Fact to Novice Task, Theory to Best Practice, Example to Case Review, Case study to Playbook, Fiction to Myth or Misconception. Level six, Meta-Relational Analogy, the g-Leap: This is peak fluid intelligence. You will see pure operator analogies like North to South as East to West. Your task: determine if the premise is true or false by deducing the hidden operator. Example: North to South is Up-shift to Down-shift, which are opposites, so the hidden operator is West. East to West is Analogue to Opposite, also opposites, so the hidden operator is West. West equals West, the premise is True. An n-back match occurs when both premises have the same truth value. Level seven, Generative Semantic Anchoring, the Ultimate g-Leap: This is the highest cognitive challenge. When you see a Level six premise, you will be prompted to generate your own semantic pairs from imagination. The system shows North to South as East to West. You input: What does North to South mean to you? You type Teacher to Student. You input: What does East to West mean to you? You type Day to Night. The system validates your pairs, stores them with the premise, and you must recall YOUR anchors across n-back trials. This maximizes g-load through generative creation, working memory for self-generated concepts, dual representation of operators plus personal semantics, validation of your semantics, and n-back matching while recalling your anchors. This is the highest g-load task because your imagination creates the semantic layer. Mastery litmus: you can improvise new, coherent mappings at speed, across themes, while the logic engine remains satisfied—no contradictions, no shortcuts.'
             },
@@ -1058,6 +1071,16 @@
                         <dd><strong>A:</strong> It helps! If J := "Fact" in trial 1, keeping it as "Fact" throughout makes recall easier. But you can also challenge yourself by creating fresh anchors each trial.</dd>
                         <dt><strong>Q (Semantic Anchoring):</strong> Can I write down my semantic anchors?</dt>
                         <dd><strong>A:</strong> You can, but that defeats the purpose! The cognitive training comes from maintaining these anchors <strong>in working memory only</strong>. Writing them down is like using a calculator instead of doing mental math.</dd>
+                        <dt><strong>Q (Level 8):</strong> What do the diagonal directions mean?</dt>
+                        <dd><strong>A:</strong> <strong>YOU decide!</strong> That's the entire point of Level 8. The diagonals (NE, SE, SW, NW) are open for your interpretation. A common approach: use compositional logic. NE = N+E = "up-shift an analogue" = "abstract sibling". SE = S+E = "down-shift an analogue" = "concrete parallel". SW = S+W = "down-shift an opposite" = "concrete antithesis". NW = N+W = "up-shift an opposite" = "abstract negation". But YOUR system is what matters—just be consistent!</dd>
+                        <dt><strong>Q (Level 8):</strong> Should I write down my diagonal interpretations?</dt>
+                        <dd><strong>A:</strong> <strong>Initially, yes!</strong> For your first few Level 8 sessions, keep a written reference of your diagonal meanings. Once you've internalized your 8-direction model (after 5-10 sessions), challenge yourself to maintain it purely in working memory. That's when the maximum cognitive benefit occurs.</dd>
+                        <dt><strong>Q (Level 8):</strong> Can I change my diagonal interpretations between sessions?</dt>
+                        <dd><strong>A:</strong> You can, but it's not recommended. Consistency helps you build fluency. Pick a system that makes sense to you and stick with it across sessions. Think of it like learning a language—changing the vocabulary every day makes mastery impossible.</dd>
+                        <dt><strong>Q (Level 8):</strong> How is Level 8 different from Level 7?</dt>
+                        <dd><strong>A:</strong> Level 7 uses 4-direction compound operators (12 possible compounds). Level 8 uses 8-direction compound operators (56 possible compounds) with diagonal directions that YOU must define. Level 8 adds: generative semantics (inventing diagonal meanings), 8-way spatial reasoning, combinatorial explosion (4.7× more compounds), and diagonal abstraction (combining two axes). It's Level 7 on steroids.</dd>
+                        <dt><strong>Q (Level 8):</strong> What if my diagonal interpretations create contradictions?</dt>
+                        <dd><strong>A:</strong> That's a sign your system needs refinement! A good 8-direction model should be internally consistent. If NE = "abstract sibling" and you apply it twice, the result should feel coherent. Test your system before committing to it. Try applying each diagonal 2-3 times in a chain—does it still make sense?</dd>
                     </dl>
                 `,
                 speech: 'Pitfalls and FAQ. Question: Can I use the same word for East, the analogue? Answer: Prefer siblings, not duplicates. Candle to Lantern, not Candle to Candle. Question: My West choice feels too cartoonish. Answer: Opposite includes counter-role or antagonist, not just antonym. Order to Chaos. Plan to Improvisation. Question: What if my mapping breaks later? Answer: Use a Reframe action. Log it. Consistency matters more than stubbornness. Question: Do analogies change scoring? Answer: No. Scoring is formal. Analogies train your semantic agility. Question, Level six: How do I know if a META premise is true or false? Answer: Deduce the hidden operator for each pair. Example: North to South equals Up-shift to Down-shift equals Opposite, West. East to West equals Analogue to Opposite equals Opposite, West. West equals West, so True. If operators differ, it is False. If both are orthogonal, no relationship, it is True. Question, Level six: What is an orthogonal relationship? Answer: No clear relationship exists. Example: North to East, Up-shift to Analogue, has no operator because they are perpendicular concepts. If both pairs are orthogonal, the premise is True, None equals None. Question, Level six: How does n-back matching work for META premises? Answer: Match on truth value, not operators. If n-back premise was True and current premise is True, MATCH. If n-back was False and current is False, MATCH. Different truth values, NO MATCH. Question, Level seven: What if I cannot think of a semantic pair? Answer: Use the concept hint shown in the modal. For North, Up-shift, think mature to immature, complex to simple. For South, reverse it. For East, think siblings, parallel roles. For West, think antonyms, counter-roles. Question, Level seven: Does it matter what semantic pairs I choose? Answer: Yes! They must match the operator concept. The system validates this. But within valid pairs, your choice is what matters. The cognitive load comes from generating and remembering your specific choices across n-back trials. Question, Level seven: Do I have to remember my semantic pairs from previous trials? Answer: Yes! That is the entire point. When evaluating n-back matches, you should recall what you anchored n trials ago. This generative working memory demand is what creates maximum g-load. Question, Level seven: Can I write down my semantic pairs? Answer: The system displays them with each premise, so you will see them. But for maximum training effect, try to recall them from memory first, then verify with the display.'
@@ -1081,6 +1104,13 @@
                         <li><strong>Semantic anchoring:</strong> a mental strategy where you anchor abstract letters to concrete concepts from your lived experience, then apply directional transformations. Example: J := "Fact", North(J→N) = "Fact"→"Theory".</li>
                         <li><strong>Arc of Abstraction:</strong> the spectrum from concrete lived experience to abstract concepts. Semantic anchoring uses this arc to make abstract premises meaningful.</li>
                         <li><strong>Mental transformation:</strong> applying directional operators to your semantic anchors in your head. Example: South("Theory") = down-shift → "Example".</li>
+                        <li><strong>Compound operator (Level 7):</strong> a 2-operator sequence from 4 directions (N, S, E, W), creating 12 possible compounds (e.g., "north-west", "south-east"). Used in premises like "north-west is north of south-east".</li>
+                        <li><strong>8-direction compound operator (Level 8):</strong> a 2-operator sequence from 8 directions (N, NE, E, SE, S, SW, W, NW), creating 56 possible compounds (e.g., "northeast-southwest", "southeast-northwest").</li>
+                        <li><strong>Diagonal operators (Level 8):</strong> the four diagonal directions (NE, SE, SW, NW) that combine cardinal axes. Their meanings are generatively defined by the player. Example: NE = "up-shift + analogue" = "abstract sibling".</li>
+                        <li><strong>Generative semantics (Level 8):</strong> the process of inventing and maintaining consistent meanings for diagonal operators. Unlike cardinal directions with fixed meanings, diagonals require creative interpretation.</li>
+                        <li><strong>Compositional logic (Level 8):</strong> defining diagonal operators by combining their component cardinal directions. Example: NE = N+E = "generalize an analogue" = "abstract sibling".</li>
+                        <li><strong>8-way spatial reasoning (Level 8):</strong> maintaining a coherent mental model of 8 directional operators and their compound sequences. Requires significantly higher working memory than 4-way reasoning.</li>
+                        <li><strong>Octo-Leap (Level 8):</strong> shorthand for "8-Direction Meta-Compound Operators", the highest difficulty level requiring generative semantics, 8-way spatial reasoning, and all previous level demands.</li>
                     </ul>
                 `,
                 speech: 'Glossary. Arc of Abstraction: the mental continuum from concrete or particular to abstract or general. Up-shift and Down-shift: moves along the arc, north and south. Analogue and Opposite: lateral moves preserving or inverting role, east and west. Anchor: your chosen seed concept for a letter. Compound mapping: a single letter carrying a composed phrase to satisfy multiple relations, for example Chaotic example. Reframe: deliberate change to an anchored concept, logged for consistency tracking. META RELATIONAL premise, Level six: a pure operator analogy comparing relationships between operators, for example North to South as East to West. No letters, only compass directions. Truth value: whether a META premise evaluates to true or false. True if both operator pairs deduce to the same relationship, or both orthogonal. False otherwise. Orthogonal relationship: when two operators have no clear relationship, neither same concept nor opposite. Example: Up-shift North to Analogue East equals orthogonal. Deduced operator: the hidden relationship between two operators. North to South, Up-shift to Down-shift, deduces to West, Opposite. User semantics, Level seven: your own imagination-generated semantic pairs anchoring META operators to concrete concepts, for example North to South equals Teacher to Student. Generative anchoring: creating semantic pairs from imagination rather than selecting from provided options. Maximizes cognitive load. Semantic validation: checking that your generated semantic pair matches the operator concept, for example Teacher to Student must match North Up-shift concept.'
@@ -1296,6 +1326,143 @@
                     <p><strong>Recommended settings for maximum challenge:</strong> n=5, k=4 (5-back with 4 compound atoms per premise)</p>
                 `,
                 speech: 'Level Seven: Compound Operator Relational, Maximum g-Load. This is the ultimate cognitive challenge, combining abstract operator sequences, semantic anchoring, meta-relational reasoning, and working memory into a single unified task. Level seven achieves seventh-order reasoning. The Concept: Level seven premises look like this: north-west is north of south-east. This combines compound operators like north-west which is a sequence of exactly two transformations, meta-relationships where compound operators are related by a meta-operator, semantic anchoring where you mentally anchor and transform concepts through sequences, and abstract pairing where the two compound operators form a unified relational structure. How It Works, Purely Mental: Example: north-west is north of south-east. Step one, Pick a seed concept for left side: Order. Step two, Apply north-west transformation: North of Order equals up-shift to System. West of System equals opposite to Chaos. Result: north-west equals Chaos. Step three, Pick a seed concept for right side: Calm. Step four, Apply south-east transformation: South of Calm equals down-shift to Stillness. East of Stillness equals analogue to Peace. Result: south-east equals Peace. Step five, Evaluate meta-relationship: Is Chaos north of Peace? Is Chaos a generalization of Peace? Your judgment decides. Step six, Decide: MATCH or NO MATCH based on your semantic model. Why This is Maximum g-Load: Level seven combines all cognitive demands simultaneously. Sequential transformation: apply two operators in sequence for each compound. Semantic anchoring: generate mental concepts for seeds. Working memory: maintain transformation state across steps. Meta-reasoning: evaluate relationships between compound results. Abstract pairing: unified relational structure, not separate examples. Subjective judgment: no formal answer, trust your mental model. N-back recall: remember your judgments across trials. How to Enable: Check the Force Compound Operator Trials, Level seven Maximum g-Load, checkbox in the controls panel before starting a session. Recommended settings for maximum challenge: n equals five, k equals four, five-back with four compound atoms per premise.'
+            },
+            {
+                id: 'level8',
+                title: 'Level 8: 8-Direction Meta-Compound Operators (Octo-Leap)',
+                html: `
+                    <h3>Level 8: 8-Direction Meta-Compound Operators (Octo-Leap)</h3>
+                    <p>This is <strong>the ultimate expansion of spatial reasoning</strong>. Level 8 extends the 4-direction compass to <strong>8 directions</strong>, adding diagonal operators that YOU must creatively interpret.</p>
+
+                    <h4>The Concept: Generative Semantics</h4>
+                    <p>Level 8 premises look like this:</p>
+                    <p style="text-align: center; font-size: 1.2rem; color: #e74c3c; margin: 20px 0;"><code>"northeast-southwest is north of southeast-northwest"</code></p>
+
+                    <p>This combines:</p>
+                    <ul>
+                        <li><strong>8-direction compound operators:</strong> Sequences drawn from N, NE, E, SE, S, SW, W, NW (56 possible compounds: 8×7)</li>
+                        <li><strong>4-direction meta-operators:</strong> The meta-relationship remains N, S, E, W</li>
+                        <li><strong>Generative interpretation:</strong> YOU invent meanings for diagonal directions (NE, SE, SW, NW)</li>
+                        <li><strong>Semantic anchoring at scale:</strong> Create and maintain an 8-direction mental model</li>
+                    </ul>
+
+                    <h4>The 8 Directions</h4>
+                    <p>You already know the cardinal directions:</p>
+                    <ul>
+                        <li><strong>N (North):</strong> Up-shift, generalization, abstraction</li>
+                        <li><strong>S (South):</strong> Down-shift, specification, concretization</li>
+                        <li><strong>E (East):</strong> Analogue, sibling, parallel role</li>
+                        <li><strong>W (West):</strong> Opposite, antonym, counter-role</li>
+                    </ul>
+
+                    <p><strong>The diagonal directions are OPEN for YOUR interpretation:</strong></p>
+                    <ul>
+                        <li><strong>NE (Northeast):</strong> What does "up-shift + analogue" mean to you? Generalizing sideways? Abstract sibling?</li>
+                        <li><strong>SE (Southeast):</strong> Down-shift + analogue? Concrete parallel? Specific example of similar thing?</li>
+                        <li><strong>SW (Southwest):</strong> Down-shift + opposite? Concrete antithesis? Specific counter-example?</li>
+                        <li><strong>NW (Northwest):</strong> Up-shift + opposite? Abstract antonym? Generalized negation?</li>
+                    </ul>
+
+                    <p><strong>Critical insight:</strong> There is no "correct" interpretation. The cognitive training comes from <strong>inventing a coherent 8-direction model</strong> and <strong>maintaining it across trials</strong>.</p>
+
+                    <h4>How It Works (Purely Mental)</h4>
+                    <p><strong>Example:</strong> "northeast-southwest is north of southeast-northwest"</p>
+
+                    <ol>
+                        <li><strong>Pick a seed concept for left side:</strong> "Order"</li>
+                        <li><strong>Apply NE transformation:</strong>
+                            <ul>
+                                <li>You've decided NE = "abstract sibling"</li>
+                                <li>Abstract sibling of "Order" → "Structure"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apply SW transformation:</strong>
+                            <ul>
+                                <li>You've decided SW = "concrete opposite"</li>
+                                <li>Concrete opposite of "Structure" → "Spontaneity"</li>
+                                <li>Result: NE-SW = "Spontaneity"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pick a seed concept for right side:</strong> "Plan"</li>
+                        <li><strong>Apply SE transformation:</strong>
+                            <ul>
+                                <li>You've decided SE = "concrete analogue"</li>
+                                <li>Concrete analogue of "Plan" → "Blueprint"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apply NW transformation:</strong>
+                            <ul>
+                                <li>You've decided NW = "abstract opposite"</li>
+                                <li>Abstract opposite of "Blueprint" → "Improvisation"</li>
+                                <li>Result: SE-NW = "Improvisation"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Evaluate meta-relationship:</strong> Is "Spontaneity" north of "Improvisation"? (Is Spontaneity a generalization of Improvisation?)</li>
+                        <li><strong>Your judgment decides:</strong> MATCH or NO MATCH</li>
+                    </ol>
+
+                    <h4>Why This is Beyond Maximum g-Load</h4>
+                    <p>Level 8 adds cognitive demands on top of Level 7:</p>
+                    <ol>
+                        <li><strong>Generative semantics:</strong> YOU create the meaning of 4 new operators</li>
+                        <li><strong>8-way spatial reasoning:</strong> Maintain a coherent 8-direction model</li>
+                        <li><strong>Combinatorial explosion:</strong> 56 possible compounds (vs. 12 in Level 7)</li>
+                        <li><strong>Diagonal abstraction:</strong> Diagonals combine two axes—requires higher-order thinking</li>
+                        <li><strong>Consistency maintenance:</strong> Your interpretations must remain coherent across trials</li>
+                        <li><strong>All Level 7 demands:</strong> Sequential transformation, semantic anchoring, meta-reasoning, n-back recall</li>
+                    </ol>
+
+                    <h4>Tips for Success</h4>
+                    <ul>
+                        <li><strong>Define your diagonals early:</strong> Before starting, decide what NE, SE, SW, NW mean to you</li>
+                        <li><strong>Write them down (initially):</strong> For first few sessions, keep a reference of your diagonal interpretations</li>
+                        <li><strong>Use compositional logic:</strong> NE = N+E, so combine their meanings (e.g., "up-shift an analogue")</li>
+                        <li><strong>Be systematic:</strong> If NE = "abstract sibling", then SW should be its opposite: "concrete opposite"</li>
+                        <li><strong>Test coherence:</strong> Do your interpretations create consistent transformations?</li>
+                        <li><strong>Internalize gradually:</strong> After practice, you should no longer need written reference</li>
+                    </ul>
+
+                    <h4>Example Diagonal Interpretation Systems</h4>
+                    <p><strong>System 1 (Compositional):</strong></p>
+                    <ul>
+                        <li>NE = "Generalize + Analogue" = "Abstract Sibling" (e.g., Theory→Theorem)</li>
+                        <li>SE = "Specify + Analogue" = "Concrete Parallel" (e.g., Example→Instance)</li>
+                        <li>SW = "Specify + Opposite" = "Concrete Antithesis" (e.g., Light→Darkness)</li>
+                        <li>NW = "Generalize + Opposite" = "Abstract Negation" (e.g., Order→Entropy)</li>
+                    </ul>
+
+                    <p><strong>System 2 (Spatial Metaphor):</strong></p>
+                    <ul>
+                        <li>NE = "Rising to the side" = "Elevated alternative"</li>
+                        <li>SE = "Descending to the side" = "Grounded variant"</li>
+                        <li>SW = "Descending away" = "Diminished opposite"</li>
+                        <li>NW = "Rising away" = "Transcendent opposite"</li>
+                    </ul>
+
+                    <p><strong>System 3 (Narrative):</strong></p>
+                    <ul>
+                        <li>NE = "Allied improvement"</li>
+                        <li>SE = "Practical example"</li>
+                        <li>SW = "Grounded counterpoint"</li>
+                        <li>NW = "Ideological antithesis"</li>
+                    </ul>
+
+                    <h4>K Parameter in Level 8</h4>
+                    <ul>
+                        <li><strong>k=1:</strong> Single 8D compound atom</li>
+                        <li><strong>k=2:</strong> Two 8D compound atoms</li>
+                        <li><strong>k=3:</strong> Three 8D compound atoms</li>
+                        <li><strong>k=4:</strong> Four 8D compound atoms (extreme challenge)</li>
+                    </ul>
+
+                    <h4>How to Enable</h4>
+                    <p>Check the <strong>"Force 8-Direction Compound Operator Trials (Level 8: Octo-Leap)"</strong> checkbox in the controls panel before starting a session. This automatically disables Level 6 and Level 7 (they're mutually exclusive).</p>
+
+                    <p><strong>Recommended settings for ultimate challenge:</strong> n=4, k=3 (4-back with 3 eight-directional compound atoms)</p>
+
+                    <p style="color: #e74c3c; font-weight: bold; margin-top: 20px;">WARNING: Level 8 is cognitively demanding beyond measure. Start with n=2, k=1 and gradually increase difficulty as you internalize your 8-direction model.</p>
+                `,
+                speech: 'Level Eight: Eight-Direction Meta-Compound Operators, Octo-Leap. This is the ultimate expansion of spatial reasoning, extending the compass to eight directions with diagonal operators that you must creatively interpret. The Concept, Generative Semantics: Level eight premises look like this: northeast-southwest is north of southeast-northwest. This combines eight-direction compound operators drawn from N, NE, E, SE, S, SW, W, NW, creating fifty-six possible compounds. Meta-operators remain four-directional: N, S, E, W. The breakthrough is generative interpretation: you invent meanings for diagonal directions. The Eight Directions: You know the cardinals. North: up-shift, generalization. South: down-shift, specification. East: analogue, sibling. West: opposite, antonym. The diagonal directions are open for your interpretation. Northeast: What does up-shift plus analogue mean to you? Abstract sibling? Southeast: Down-shift plus analogue? Concrete parallel? Southwest: Down-shift plus opposite? Concrete antithesis? Northwest: Up-shift plus opposite? Abstract negation? Critical insight: There is no correct interpretation. The cognitive training comes from inventing a coherent eight-direction model and maintaining it across trials. How It Works, Purely Mental: Example: northeast-southwest is north of southeast-northwest. Pick a seed concept for left side: Order. Apply NE transformation. You decided NE equals abstract sibling. Abstract sibling of Order is Structure. Apply SW transformation. You decided SW equals concrete opposite. Concrete opposite of Structure is Spontaneity. Result: NE-SW equals Spontaneity. Pick a seed for right side: Plan. Apply SE transformation. You decided SE equals concrete analogue. Concrete analogue of Plan is Blueprint. Apply NW transformation. You decided NW equals abstract opposite. Abstract opposite of Blueprint is Improvisation. Result: SE-NW equals Improvisation. Evaluate meta-relationship: Is Spontaneity north of Improvisation? Your judgment decides: MATCH or NO MATCH. Why This is Beyond Maximum g-Load: Level eight adds demands on top of Level seven. Generative semantics: you create meaning for four new operators. Eight-way spatial reasoning: maintain coherent eight-direction model. Combinatorial explosion: fifty-six possible compounds versus twelve in Level seven. Diagonal abstraction: diagonals combine two axes, requiring higher-order thinking. Consistency maintenance: your interpretations must remain coherent across trials. Plus all Level seven demands: sequential transformation, semantic anchoring, meta-reasoning, n-back recall. Tips for Success: Define your diagonals early before starting. Write them down initially for reference. Use compositional logic: NE equals N plus E, so combine their meanings. Be systematic: if NE equals abstract sibling, then SW should be concrete opposite. Test coherence in your interpretations. Internalize gradually until you no longer need written reference. How to Enable: Check the Force Eight-Direction Compound Operator Trials, Level eight Octo-Leap, checkbox in the controls panel. This disables Level six and Level seven as they are mutually exclusive. Recommended settings for ultimate challenge: n equals four, k equals three, four-back with three eight-directional compound atoms. Warning: Level eight is cognitively demanding beyond measure. Start with n equals two, k equals one and gradually increase difficulty as you internalize your eight-direction model.'
             },
             {
                 id: 'walkthrough-n2-10',
@@ -2781,6 +2948,29 @@
                 this.transitivityEnabled = enabled;
             }
 
+            /**
+             * Detects if a premise uses compound operators (Level 7-8).
+             * Compound operators contain hyphens (e.g., "NE-SW", "N-S").
+             * @param {Premise} premise - The premise to check
+             * @returns {boolean} True if premise contains compound operators
+             */
+            isCompoundOperatorPremise(premise) {
+                // META premises never use compound operators
+                if (!premise || premise.type === 'META_RELATIONAL') {
+                    return false;
+                }
+
+                // Check if any atom has compound operators in head or tail
+                if (!premise.atoms || premise.atoms.length === 0) {
+                    return false;
+                }
+
+                return premise.atoms.some(atom =>
+                    (atom.head && atom.head.includes('-')) ||
+                    (atom.tail && atom.tail.includes('-'))
+                );
+            }
+
             lettersOf(premise) {
                 const letters = new Set();
 
@@ -2893,6 +3083,45 @@
                     return { ok: false, reason: 'mapping' };
                 }
 
+                // CRITICAL: Detect compound operator premises (Levels 7-8)
+                // Compound operators are abstract units that don't obey spatial semantics
+                const isCompoundA = this.isCompoundOperatorPremise(premA);
+                const isCompoundB = this.isCompoundOperatorPremise(premB);
+                const isCompoundOperatorPair = isCompoundA || isCompoundB;
+
+                // Shared anchors check: SKIP for compound operators (Levels 7-8)
+                // Compound operators like "NE-SW" and "SW-NE" are different symbols
+                // but may represent equivalent abstract relations - they don't share "letters"
+                // in the spatial sense, so the anchors check is semantically invalid.
+                if (!isCompoundOperatorPair) {
+                    // Only perform shared anchors check for Levels 1-6
+                    const lettersA = this.lettersOf(premA);
+                    const lettersB = this.lettersOf(premB);
+                    const shared = new Set();
+                    lettersA.forEach(letter => {
+                        if (lettersB.has(letter)) {
+                            shared.add(letter);
+                        }
+                    });
+                    if (shared.size < 2) {
+                        return { ok: false, reason: 'anchors' };
+                    }
+                }
+
+                // Constraint solver: SKIP for compound operators (Levels 7-8)
+                // The ConstraintSolver enforces spatial consistency (N/S/E/W axes).
+                // Compound operators are abstract symbols without spatial semantics,
+                // so constraint solving produces meaningless results and false rejections.
+                if (!isCompoundOperatorPair) {
+                    // Only perform constraint solving for Levels 1-6
+                    const solver = new ConstraintSolver();
+                    const satResult = solver.analyze([...windowAtoms, ...atomsA, ...atomsB]);
+                    if (!satResult.ok) {
+                        return { ok: false, reason: 'sat' };
+                    }
+                }
+
+                // Compute shared letters for certificate (even if we skipped anchors check)
                 const lettersA = this.lettersOf(premA);
                 const lettersB = this.lettersOf(premB);
                 const shared = new Set();
@@ -2901,15 +3130,6 @@
                         shared.add(letter);
                     }
                 });
-                if (shared.size < 2) {
-                    return { ok: false, reason: 'anchors' };
-                }
-
-                const solver = new ConstraintSolver();
-                const satResult = solver.analyze([...windowAtoms, ...atomsA, ...atomsB]);
-                if (!satResult.ok) {
-                    return { ok: false, reason: 'sat' };
-                }
 
                 const midInfo = this.analyzeMidWindow(midAtoms);
                 if (midInfo.ok) {
@@ -3444,8 +3664,37 @@
                     allowOverride,
                     foilPlan,
                     forceMetaLeap,
-                    forceCompoundLeap
+                    forceCompoundLeap,
+                    forceOctoLeap
                 } = options;
+
+                // OCTO OPERATOR premise generation path (Level 8: 8-Direction Meta-Compound)
+                if (forceOctoLeap) {
+                    try {
+                        const octoPremise = this.buildOctoOperatorPremise(plannedMatch, nBackPremise, k);
+                        if (octoPremise && octoPremise.atoms && octoPremise.atoms.length > 0) {
+                            const signatures = this.state.novelty.buildSignatures(octoPremise);
+                            return {
+                                premise: octoPremise,
+                                signatures,
+                                novelty: { noveltyScores: {}, blocked: false },
+                                satResult: { ok: true, coordinates: new Map() },
+                                certificate: null,
+                                midDerivable: false,
+                                attempts: 1,
+                                modeUsed: 'OCTO_OPERATOR',
+                                features: octoPremise.getFeatures(),
+                                foilType: null,
+                                planMatch: plannedMatch
+                            };
+                        } else {
+                            console.error('buildOctoOperatorPremise returned invalid premise', octoPremise);
+                        }
+                    } catch (err) {
+                        console.error('OCTO premise generation failed', err);
+                        // Fall through to COMPOUND, META or atomic generation as emergency fallback
+                    }
+                }
 
                 // COMPOUND OPERATOR premise generation path (Level 7)
                 if (forceCompoundLeap) {
@@ -4391,6 +4640,19 @@
                 return `${op1}-${op2}`;
             }
 
+            generateCompoundOperator8D() {
+                // Level 8: Generate 8-direction compound operators
+                // Randomly select two DIFFERENT operators from LEVEL8_OPERATORS (N, NE, E, SE, S, SW, W, NW)
+                // Creates 56 possible compounds (8×7)
+                const op1 = this.state.rng.choice(LEVEL8_OPERATORS);
+
+                // Ensure op2 is different from op1
+                const otherOps = LEVEL8_OPERATORS.filter(op => op !== op1);
+                const op2 = this.state.rng.choice(otherOps);
+
+                return `${op1}-${op2}`;
+            }
+
             buildCompoundOperatorPremise(plannedMatch, nBackPremise, k) {
                 // Generate Level 7: Compound Operator Relational premise
                 // Example: "north-west is north of south-east"
@@ -4418,6 +4680,38 @@
                     console.error('buildCompoundOperatorPremise: critical error', err);
                     // Fallback to simple compound premise
                     return new Premise([new Atom('N', 'north-west', 'south-east')]);
+                }
+            }
+
+            buildOctoOperatorPremise(plannedMatch, nBackPremise, k) {
+                // Generate Level 8: 8-Direction Meta-Compound Operator premise
+                // Example: "northeast-southwest is north of southeast-northwest"
+                // Uses ATOMIC premise type with 8-direction compound operators (N, NE, E, SE, S, SW, W, NW)
+                // Meta-operators remain 4-directional (N, S, E, W)
+                // k controls number of atoms: k=1 → 1 atom, k=2 → 2 atoms, etc.
+
+                const numAtoms = Math.max(1, Math.min(4, k || 1));
+                const META_AXES = ['N', 'S', 'E', 'W']; // Meta-operators remain 4-directional
+                const atoms = [];
+
+                try {
+                    for (let i = 0; i < numAtoms; i++) {
+                        // Generate two 8-direction compound operators
+                        const compound1 = this.generateCompoundOperator8D();
+                        const compound2 = this.generateCompoundOperator8D();
+
+                        // Choose random meta-operator to relate them (4-directional)
+                        const metaAxis = this.state.rng.choice(META_AXES);
+
+                        // Create atom with 8D compound operators as head/tail
+                        atoms.push(new Atom(metaAxis, compound1, compound2));
+                    }
+
+                    return new Premise(atoms);
+                } catch (err) {
+                    console.error('buildOctoOperatorPremise: critical error', err);
+                    // Fallback to simple 8D compound premise
+                    return new Premise([new Atom('N', 'NE-SW', 'SE-NW')]);
                 }
             }
 
@@ -5491,6 +5785,7 @@
                 this.activePremise = null;
                 this.forceMetaLeap = false;
                 this.forceCompoundLeap = false;
+                this.forceOctoLeap = false;
             }
 
             get n() {
@@ -5594,24 +5889,29 @@
                     gLeapToggle.addEventListener('change', (e) => {
                         this.forceMetaLeap = e.target.checked;
 
-                        // If Level 6 enabled, disable Level 7
+                        // If Level 6 enabled, disable Level 7 and Level 8
                         if (this.forceMetaLeap) {
                             const compoundToggle = document.getElementById('compound-leap-toggle');
                             if (compoundToggle) compoundToggle.checked = false;
                             this.forceCompoundLeap = false;
+
+                            const octoToggle = document.getElementById('octo-leap-toggle');
+                            if (octoToggle) octoToggle.checked = false;
+                            this.forceOctoLeap = false;
                         }
 
                         // Disable transitivity toggle in META mode (doesn't apply to operator logic)
                         const transitivityCtrl = document.getElementById('transitivity-toggle');
                         if (transitivityCtrl) {
-                            transitivityCtrl.disabled = this.forceMetaLeap || this.forceCompoundLeap;
+                            transitivityCtrl.disabled = this.forceMetaLeap || this.forceCompoundLeap || this.forceOctoLeap;
                         }
 
                         // Update k slider label to show what k means in META mode
                         const kLabel = document.getElementById('k-label');
                         if (kLabel) {
-                            kLabel.textContent = this.forceMetaLeap ? 'Operator Pairs' :
-                                               this.forceCompoundLeap ? 'Compound Atoms' : 'Atoms per Premise';
+                            kLabel.textContent = this.forceOctoLeap ? '8D Compound Atoms' :
+                                               this.forceCompoundLeap ? 'Compound Atoms' :
+                                               this.forceMetaLeap ? 'Operator Pairs' : 'Atoms per Premise';
                         }
                     });
                 }
@@ -5621,23 +5921,60 @@
                     compoundLeapToggle.addEventListener('change', (e) => {
                         this.forceCompoundLeap = e.target.checked;
 
-                        // If Level 7 enabled, disable Level 6
+                        // If Level 7 enabled, disable Level 6 and Level 8
                         if (this.forceCompoundLeap) {
                             const gToggle = document.getElementById('g-leap-toggle');
                             if (gToggle) gToggle.checked = false;
                             this.forceMetaLeap = false;
+
+                            const octoToggle = document.getElementById('octo-leap-toggle');
+                            if (octoToggle) octoToggle.checked = false;
+                            this.forceOctoLeap = false;
                         }
 
                         // Disable transitivity toggle in COMPOUND mode (doesn't apply)
                         const transitivityCtrl = document.getElementById('transitivity-toggle');
                         if (transitivityCtrl) {
-                            transitivityCtrl.disabled = this.forceMetaLeap || this.forceCompoundLeap;
+                            transitivityCtrl.disabled = this.forceMetaLeap || this.forceCompoundLeap || this.forceOctoLeap;
                         }
 
                         // Update k slider label
                         const kLabel = document.getElementById('k-label');
                         if (kLabel) {
-                            kLabel.textContent = this.forceCompoundLeap ? 'Compound Atoms' :
+                            kLabel.textContent = this.forceOctoLeap ? '8D Compound Atoms' :
+                                               this.forceCompoundLeap ? 'Compound Atoms' :
+                                               this.forceMetaLeap ? 'Operator Pairs' : 'Atoms per Premise';
+                        }
+                    });
+                }
+
+                const octoLeapToggle = document.getElementById('octo-leap-toggle');
+                if (octoLeapToggle) {
+                    octoLeapToggle.addEventListener('change', (e) => {
+                        this.forceOctoLeap = e.target.checked;
+
+                        // If Level 8 enabled, disable Level 6 and Level 7 (mutually exclusive)
+                        if (this.forceOctoLeap) {
+                            const gToggle = document.getElementById('g-leap-toggle');
+                            if (gToggle) gToggle.checked = false;
+                            this.forceMetaLeap = false;
+
+                            const compoundToggle = document.getElementById('compound-leap-toggle');
+                            if (compoundToggle) compoundToggle.checked = false;
+                            this.forceCompoundLeap = false;
+                        }
+
+                        // Disable transitivity toggle in OCTO mode (doesn't apply)
+                        const transitivityCtrl = document.getElementById('transitivity-toggle');
+                        if (transitivityCtrl) {
+                            transitivityCtrl.disabled = this.forceMetaLeap || this.forceCompoundLeap || this.forceOctoLeap;
+                        }
+
+                        // Update k slider label
+                        const kLabel = document.getElementById('k-label');
+                        if (kLabel) {
+                            kLabel.textContent = this.forceOctoLeap ? '8D Compound Atoms' :
+                                               this.forceCompoundLeap ? 'Compound Atoms' :
                                                this.forceMetaLeap ? 'Operator Pairs' : 'Atoms per Premise';
                         }
                     });
@@ -5972,7 +6309,8 @@
                     allowOverride: true,
                     foilPlan: plan.foilPlan,
                     forceMetaLeap: this.forceMetaLeap,
-                    forceCompoundLeap: this.forceCompoundLeap
+                    forceCompoundLeap: this.forceCompoundLeap,
+                    forceOctoLeap: this.forceOctoLeap
                 };
                 return this.generator.generate(params);
             }
@@ -6573,7 +6911,11 @@
             return new Promise((resolve) => {
                 let settled = false;
                 const settle = (payload) => {
-                    if (settled) return;
+                    if (settled) {
+                        console.warn(`collectResponseSafe: settle() called multiple times for trial token ${trialToken} - IGNORING duplicate call. Payload:`, payload);
+                        console.trace('Duplicate settle() call stack trace:');
+                        return;
+                    }
                     settled = true;
                     cleanup();
                     resolve(payload);
@@ -6596,10 +6938,27 @@
                     unbindTrialButtons(onMatch, onNo);
                     Timer.clear(timerId);
                     window.__imagiActiveResponse = null;
+                    // CRITICAL FIX: Clear forceCurrentTrialTimeout to prevent watchdog from calling stale timeout function
+                    // BUG: If watchdog calls forceCurrentTrialTimeout after this trial ends but before next trial starts,
+                    // it would call the OLD settle() function, causing undefined behavior and potential session stops
+                    window.forceCurrentTrialTimeout = null;
                 };
 
                 signal.addEventListener('abort', () => settle({ type: 'timeout' }), { once: true });
-                window.forceCurrentTrialTimeout = () => settle({ type: 'timeout' });
+
+                // CRITICAL FIX: Create timeout function with staleness check
+                // This prevents watchdog from triggering stale settle() calls that could crash the session
+                const timeoutToken = Symbol('timeout-token');
+                window.forceCurrentTrialTimeout = () => {
+                    // Only settle if this is still the active timeout function (not stale)
+                    if (window.forceCurrentTrialTimeout?.timeoutToken === timeoutToken) {
+                        console.log(`forceCurrentTrialTimeout called for trial token ${trialToken} - settling as timeout`);
+                        settle({ type: 'timeout' });
+                    } else {
+                        console.warn(`forceCurrentTrialTimeout called but token is stale (expected ${timeoutToken.toString()}, current ${window.forceCurrentTrialTimeout?.timeoutToken?.toString()}) - IGNORING to prevent race condition`);
+                    }
+                };
+                window.forceCurrentTrialTimeout.timeoutToken = timeoutToken;
             });
         }
 
@@ -6649,7 +7008,14 @@
                     if (nudgeCount <= 3) {  // Allow up to 3 nudges before giving up on this trial
                         cancelSpeechImmediately();
                         if (session?.policy === AdvancePolicy.ACTIVE) {
-                            window.forceCurrentTrialTimeout?.();
+                            // CRITICAL FIX: Only call forceCurrentTrialTimeout if it exists and trial tokens match
+                            // This prevents calling stale timeout functions that could cause session stops
+                            if (typeof window.forceCurrentTrialTimeout === 'function') {
+                                console.log(`Watchdog nudge #${nudgeCount}: Calling forceCurrentTrialTimeout for trial ${sess.trialIndex}`);
+                                window.forceCurrentTrialTimeout();
+                            } else {
+                                console.warn(`Watchdog nudge #${nudgeCount}: No active forceCurrentTrialTimeout function (trial might be between states)`);
+                            }
                         } else {
                             Timer.set('dwell-nudge', 50, session.trialToken, session.abort.signal, () => {});
                         }
